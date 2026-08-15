@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tic-Tac-Toe — two pens, one page</title>
+  <meta name="description" content="A pass-and-play tic-tac-toe board drawn like pen on notebook paper." />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <main class="page">
+    <header class="masthead">
+      <h1 class="title">tic-tac-toe</h1>
+      <p class="subtitle">two players, one page — take turns marking the grid</p>
+    </header>
+
+    <div class="status-row">
+      <div class="status-tag" id="statusTag" role="status" aria-live="polite">
+        <span class="status-dot" id="statusDot" aria-hidden="true"></span>
+        <span id="statusText">player 1's turn</span>
+      </div>
+    </div>
+
+    <div class="board-wrap">
+      <svg id="boardSvg" class="board" viewBox="0 0 300 300" role="presentation" aria-hidden="true">
+        <g id="gridLines" class="grid-lines"></g>
+        <g id="marks"></g>
+        <g id="strike"></g>
+      </svg>
+      <div class="cell-grid" id="cellGrid" role="grid" aria-label="Tic-tac-toe board"></div>
+    </div>
+
+    <section class="scoreboard" aria-label="Score">
+      <div class="score-box">
+        <span class="score-label ink-navy">X</span>
+        <svg class="tally" id="tallyX" viewBox="0 0 120 30" aria-hidden="true"></svg>
+        <span class="score-num" id="scoreNumX">0</span>
+      </div>
+      <div class="score-box">
+        <span class="score-label ink-red">O</span>
+        <svg class="tally" id="tallyO" viewBox="0 0 120 30" aria-hidden="true"></svg>
+        <span class="score-num" id="scoreNumO">0</span>
+      </div>
+      <div class="score-box">
+        <span class="score-label ink-faded">ties</span>
+        <svg class="tally" id="tallyD" viewBox="0 0 120 30" aria-hidden="true"></svg>
+        <span class="score-num" id="scoreNumD">0</span>
+      </div>
+    </section>
+
+    <div class="controls">
+      <button class="stamp-btn" id="newGameBtn" type="button">new game</button>
+      <button class="text-link" id="resetScoreBtn" type="button">reset scores</button>
+    </div>
+
+    <p class="footnote">tab to a square, enter or space to mark it.</p>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

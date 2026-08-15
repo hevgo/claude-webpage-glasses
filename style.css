@@ -1,0 +1,450 @@
+/* ---------------------------------------------------------------
+   Fonts — Kalam (ballpoint headline) + IBM Plex Mono (typewritten UI)
+   --------------------------------------------------------------- */
+@font-face {
+  font-family: "Kalam";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/kalam-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "Kalam";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url("fonts/kalam-700.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/plexmono-400.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url("fonts/plexmono-500.woff2") format("woff2");
+}
+@font-face {
+  font-family: "IBM Plex Mono";
+  font-style: normal;
+  font-weight: 600;
+  font-display: swap;
+  src: url("fonts/plexmono-600.woff2") format("woff2");
+}
+
+/* ---------------------------------------------------------------
+   Tokens — a sheet of ruled paper, two pens
+   --------------------------------------------------------------- */
+:root {
+  --paper: #f4f1e6;
+  --paper-line: #aebfe0;
+  --paper-margin: #d98d84;
+  --ink-navy: #223055;
+  --ink-navy-soft: #223055cc;
+  --ink-red: #b23a2e;
+  --ink-red-soft: #b23a2ecc;
+  --ink-faded: #5c6178;
+  --ink-faded-2: #8a8f9e;
+  --surface-raised: #ece8da;
+  --shadow-soft: 0 1px 0 rgba(34, 48, 85, 0.08);
+  --focus-ring: #b23a2e;
+
+  --font-display: "Kalam", "Segoe Print", cursive;
+  --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #1d2233;
+    --paper-line: #4a5a89;
+    --paper-margin: #c96a5e;
+    --ink-navy: #eef0f8;
+    --ink-navy-soft: #eef0f8cc;
+    --ink-red: #e8897c;
+    --ink-red-soft: #e8897ccc;
+    --ink-faded: #a7acc4;
+    --ink-faded-2: #7d83a0;
+    --surface-raised: #262c42;
+    --shadow-soft: 0 1px 0 rgba(0, 0, 0, 0.35);
+    --focus-ring: #e8897c;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #1d2233;
+  --paper-line: #4a5a89;
+  --paper-margin: #c96a5e;
+  --ink-navy: #eef0f8;
+  --ink-navy-soft: #eef0f8cc;
+  --ink-red: #e8897c;
+  --ink-red-soft: #e8897ccc;
+  --ink-faded: #a7acc4;
+  --ink-faded-2: #7d83a0;
+  --surface-raised: #262c42;
+  --shadow-soft: 0 1px 0 rgba(0, 0, 0, 0.35);
+  --focus-ring: #e8897c;
+}
+
+/* ---------------------------------------------------------------
+   Base
+   --------------------------------------------------------------- */
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  background-image:
+    repeating-linear-gradient(
+      to bottom,
+      transparent 0,
+      transparent 35px,
+      var(--paper-line) 35px,
+      var(--paper-line) 36px
+    );
+  background-position: 0 92px;
+  color: var(--ink-navy);
+  font-family: var(--font-mono);
+  min-height: 100%;
+  display: flex;
+  justify-content: center;
+  padding: 0 24px;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: max(24px, calc(50% - 340px));
+  width: 1px;
+  background: var(--paper-margin);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+.page {
+  width: 100%;
+  max-width: 460px;
+  padding: 56px 0 64px 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+}
+
+/* ---------------------------------------------------------------
+   Masthead
+   --------------------------------------------------------------- */
+.masthead {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(2.4rem, 9vw, 3.1rem);
+  line-height: 1;
+  margin: 0;
+  color: var(--ink-navy);
+  transform: rotate(-1.4deg);
+  text-wrap: balance;
+}
+
+.subtitle {
+  margin: 0;
+  font-size: 0.72rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+}
+
+/* ---------------------------------------------------------------
+   Status tag — a margin note
+   --------------------------------------------------------------- */
+.status-row {
+  display: flex;
+  justify-content: center;
+}
+
+.status-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border: 1.5px solid var(--ink-faded-2);
+  border-radius: 3px;
+  transform: rotate(-0.6deg);
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--ink-navy);
+  background: var(--surface-raised);
+  box-shadow: var(--shadow-soft);
+  transition: border-color 0.2s ease;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: currentColor;
+  color: var(--ink-navy);
+  transition: color 0.2s ease;
+}
+
+.status-tag[data-player="O"] .status-dot,
+.status-tag[data-player="O"] {
+  color: var(--ink-red);
+}
+
+.status-tag[data-state="win"] {
+  border-color: var(--ink-red);
+}
+
+.status-tag[data-state="draw"] {
+  color: var(--ink-faded);
+}
+
+/* ---------------------------------------------------------------
+   Board
+   --------------------------------------------------------------- */
+.board-wrap {
+  position: relative;
+  width: min(100%, 340px);
+  aspect-ratio: 1 / 1;
+}
+
+.board {
+  width: 100%;
+  height: 100%;
+  display: block;
+  overflow: visible;
+}
+
+.grid-lines path {
+  fill: none;
+  stroke: var(--ink-navy);
+  stroke-width: 2.5;
+  stroke-linecap: round;
+  opacity: 0.55;
+}
+
+.mark-x path {
+  fill: none;
+  stroke: var(--ink-navy);
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.mark-o path {
+  fill: none;
+  stroke: var(--ink-red);
+  stroke-width: 7;
+  stroke-linecap: round;
+}
+
+.strike-line path {
+  fill: none;
+  stroke: var(--ink-red);
+  stroke-width: 4;
+  stroke-linecap: round;
+  opacity: 0.85;
+}
+
+.cell-grid {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.cell {
+  appearance: none;
+  border: none;
+  background: transparent;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  border-radius: 6px;
+}
+
+.cell:hover:not(:disabled) {
+  background: color-mix(in srgb, var(--ink-navy) 6%, transparent);
+}
+
+.cell:disabled {
+  cursor: default;
+}
+
+.cell:focus-visible {
+  outline: 2px dashed var(--focus-ring);
+  outline-offset: -4px;
+}
+
+/* ---------------------------------------------------------------
+   Scoreboard — tally marks, the way you'd actually keep score
+   --------------------------------------------------------------- */
+.scoreboard {
+  display: flex;
+  gap: 28px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.score-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  min-width: 64px;
+}
+
+.score-label {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+}
+
+.ink-navy {
+  color: var(--ink-navy);
+}
+.ink-red {
+  color: var(--ink-red);
+}
+.ink-faded {
+  color: var(--ink-faded);
+}
+
+.tally {
+  width: 60px;
+  height: 15px;
+}
+
+.tally path {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2.2;
+  stroke-linecap: round;
+}
+
+.score-box:nth-child(1) .tally {
+  color: var(--ink-navy);
+}
+.score-box:nth-child(2) .tally {
+  color: var(--ink-red);
+}
+.score-box:nth-child(3) .tally {
+  color: var(--ink-faded);
+}
+
+.score-num {
+  font-size: 0.68rem;
+  color: var(--ink-faded-2);
+  font-variant-numeric: tabular-nums;
+}
+
+/* ---------------------------------------------------------------
+   Controls
+   --------------------------------------------------------------- */
+.controls {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.stamp-btn {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.78rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--ink-red);
+  background: transparent;
+  border: 2px solid var(--ink-red);
+  border-radius: 4px;
+  padding: 10px 22px;
+  cursor: pointer;
+  transform: rotate(-1.2deg);
+  box-shadow: 2px 2px 0 color-mix(in srgb, var(--ink-red) 30%, transparent);
+  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+}
+
+.stamp-btn:hover {
+  transform: rotate(-1.2deg) translate(-1px, -1px);
+  box-shadow: 3px 3px 0 color-mix(in srgb, var(--ink-red) 30%, transparent);
+}
+
+.stamp-btn:active {
+  transform: rotate(-1.2deg) translate(1px, 1px);
+  box-shadow: 1px 1px 0 color-mix(in srgb, var(--ink-red) 30%, transparent);
+}
+
+.stamp-btn:focus-visible {
+  outline: 2px dashed var(--focus-ring);
+  outline-offset: 3px;
+}
+
+.text-link {
+  font-family: var(--font-mono);
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--ink-faded);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-decoration: underline;
+  text-decoration-style: dotted;
+  text-underline-offset: 3px;
+  padding: 4px;
+}
+
+.text-link:hover {
+  color: var(--ink-navy);
+}
+
+.text-link:focus-visible {
+  outline: 2px dashed var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.footnote {
+  margin: 0;
+  font-size: 0.65rem;
+  letter-spacing: 0.03em;
+  color: var(--ink-faded-2);
+  text-align: center;
+}
+
+/* ---------------------------------------------------------------
+   Motion
+   --------------------------------------------------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .stamp-btn,
+  .stamp-btn:hover,
+  .stamp-btn:active {
+    transition: none;
+  }
+}
+
+@media (max-width: 380px) {
+  .page {
+    padding-left: 28px;
+  }
+}
