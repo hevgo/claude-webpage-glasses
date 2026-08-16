@@ -1,16 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160" width="400" height="160">
-  <!-- refEyeSpan: lens centers at x=112 and x=288 (176 apart), bridge anchor at (200,80) -->
-  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
-    <g stroke="#a9812f" stroke-width="5">
-      <line x1="68" y1="84" x2="30" y2="74" />
-      <line x1="332" y1="84" x2="370" y2="74" />
-      <path d="M156,72 Q200,64 244,72" />
-      <rect x="68" y="46" width="88" height="76" rx="12" />
-      <rect x="244" y="46" width="88" height="76" rx="12" />
-    </g>
-    <g stroke="#1c1c1c" stroke-width="16">
-      <path d="M60,58 Q112,38 164,58" />
-      <path d="M340,58 Q288,38 236,58" />
-    </g>
+  <defs><linearGradient id="browGold" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#e6c162"/><stop offset="50%" stop-color="#b8912f"/><stop offset="100%" stop-color="#7a5e1a"/></linearGradient><linearGradient id="browBlack" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#3a3a3d"/><stop offset="60%" stop-color="#1a1a1c"/><stop offset="100%" stop-color="#050505"/></linearGradient></defs>
+  <g fill-rule="evenodd">
+    <path d="M 80.00,43.00 L 144.00,43.00 A 13.00,13.00 0 0 1 157.00,56.00 L 157.00,108.00 A 13.00,13.00 0 0 1 144.00,121.00 L 80.00,121.00 A 13.00,13.00 0 0 1 67.00,108.00 L 67.00,56.00 A 13.00,13.00 0 0 1 80.00,43.00 Z M 80.00,48.00 L 144.00,48.00 A 8.00,8.00 0 0 1 152.00,56.00 L 152.00,108.00 A 8.00,8.00 0 0 1 144.00,116.00 L 80.00,116.00 A 8.00,8.00 0 0 1 72.00,108.00 L 72.00,56.00 A 8.00,8.00 0 0 1 80.00,48.00 Z M 256.00,43.00 L 320.00,43.00 A 13.00,13.00 0 0 1 333.00,56.00 L 333.00,108.00 A 13.00,13.00 0 0 1 320.00,121.00 L 256.00,121.00 A 13.00,13.00 0 0 1 243.00,108.00 L 243.00,56.00 A 13.00,13.00 0 0 1 256.00,43.00 Z M 256.00,48.00 L 320.00,48.00 A 8.00,8.00 0 0 1 328.00,56.00 L 328.00,108.00 A 8.00,8.00 0 0 1 320.00,116.00 L 256.00,116.00 A 8.00,8.00 0 0 1 248.00,108.00 L 248.00,56.00 A 8.00,8.00 0 0 1 256.00,48.00 Z" fill="url(#browGold)"/>
   </g>
+  <path d="M 148.00,78.00 Q 200.00,72.00 252.00,78.00 Q 200.00,78.00 148.00,78.00 Z" fill="url(#browGold)"/>
+  <path d="M 63,66 Q 63,43 112,43 Q 161,43 161,66 Q 161,58 112,56 Q 63,58 63,66 Z" fill="url(#browBlack)"/>
+  <path d="M 239,66 Q 239,43 288,43 Q 337,43 337,66 Q 337,58 288,56 Q 239,58 239,66 Z" fill="url(#browBlack)"/>
+  <rect x="62.50" y="71.50" width="9" height="13" rx="2.5" fill="#050505" opacity="0.35"/><rect x="328.50" y="71.50" width="9" height="13" rx="2.5" fill="#050505" opacity="0.35"/>
+  <path d="M 68.88,76.47 Q 42.25,60.80 22.85,54.41 L 21.15,57.59 Q 42.25,57.80 65.12,83.53 Z" fill="#1a1a1c"/><path d="M 334.88,83.53 Q 357.75,60.80 378.85,57.59 L 377.15,54.41 Q 357.75,57.80 331.12,76.47 Z" fill="#1a1a1c"/>
+
 </svg>

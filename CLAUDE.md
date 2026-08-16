@@ -99,6 +99,20 @@ coordinate space as `refEyeSpan` in `js/frames.js`. This is what lets
 having a different natural lens spacing. Any new frame asset must follow
 this convention, or the overlay math will mis-scale it.
 
+The SVGs are generated, not hand-edited: `scripts/generate-frames.py`
+builds each rim as a filled ring (outer boundary + inner boundary, one
+`<path>` with `fill-rule="evenodd"`, not a stroked outline) with a
+material-shading gradient, plus a bridge, hinges, and tapered temples. The
+bridge is the fiddly part — its endpoints must land ON the rim's actual
+inner boundary (the script computes this from the same geometry that draws
+the ring; see `circle_inner_contact`/`rrect_inner_contact` and the
+point-index comments in `cateye_svg`/`aviator_svg`) or it renders as a
+floating dash disconnected from the lenses. Lens openings stay fully
+transparent — no fill — since this renders as an overlay on a real photo
+and must not hide the wearer's eyes. Run `python3 scripts/generate-frames.py`
+from the repo root after changing anything in it, or as a starting point
+for a new style.
+
 ### Theming
 
 Colors are CSS custom properties, defined three times to cover every theme

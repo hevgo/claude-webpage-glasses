@@ -1,10 +1,10 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160" width="400" height="160">
-  <!-- refEyeSpan: lens centers at x=115 and x=285 (170 apart), bridge anchor at (200,80) -->
-  <g fill="none" stroke="#3b3b3b" stroke-width="7" stroke-linecap="round" stroke-linejoin="round">
-    <line x1="63" y1="78" x2="26" y2="62" />
-    <line x1="337" y1="78" x2="374" y2="62" />
-    <path d="M166,80 Q200,70 234,80" />
-    <circle cx="115" cy="80" r="52" />
-    <circle cx="285" cy="80" r="52" />
+  <defs><linearGradient id="roundMetal" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#6b6b74"/><stop offset="55%" stop-color="#3d3d45"/><stop offset="100%" stop-color="#232328"/></linearGradient></defs>
+  <g fill-rule="evenodd">
+    <path d="M 168.00,80.00 A 53.00,53.00 0 1 0 62.00,80.00 A 53.00,53.00 0 1 0 168.00,80.00 Z M 161.00,80.00 A 46.00,46.00 0 1 0 69.00,80.00 A 46.00,46.00 0 1 0 161.00,80.00 Z M 338.00,80.00 A 53.00,53.00 0 1 0 232.00,80.00 A 53.00,53.00 0 1 0 338.00,80.00 Z M 331.00,80.00 A 46.00,46.00 0 1 0 239.00,80.00 A 46.00,46.00 0 1 0 331.00,80.00 Z" fill="url(#roundMetal)"/>
   </g>
+  <path d="M 156.30,72.00 Q 200.00,62.00 243.70,72.00 Q 200.00,67.00 156.30,72.00 Z" fill="url(#roundMetal)"/>
+  <rect x="57.50" y="69.50" width="9" height="13" rx="2.5" fill="#232328" opacity="0.35"/><rect x="333.50" y="69.50" width="9" height="13" rx="2.5" fill="#232328" opacity="0.35"/>
+  <path d="M 63.57,74.87 Q 40.00,61.00 22.70,56.59 L 21.30,59.41 Q 40.00,58.00 60.43,81.13 Z" fill="#3d3d45"/><path d="M 339.57,81.13 Q 360.00,61.00 378.70,59.41 L 377.30,56.59 Q 360.00,58.00 336.43,74.87 Z" fill="#3d3d45"/>
+
 </svg>
