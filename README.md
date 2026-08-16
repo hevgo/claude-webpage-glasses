@@ -25,8 +25,10 @@ Results show pass/fail per test on the page and in the console.
 
 ## How it works
 
-- Upload a front-facing photo. Face detection (MediaPipe Face Landmarker)
-  runs in-browser via WebAssembly and locates your eyes.
+- Upload a front-facing photo — click to browse, or drag a file onto the
+  page (works for the first photo and to replace one already showing). Face
+  detection (MediaPipe Face Landmarker) runs in-browser via WebAssembly and
+  locates your eyes.
 - A frame style is overlaid on the photo, scaled and rotated to match your
   eye line.
 - Switch between frame styles instantly — no re-detection needed, since

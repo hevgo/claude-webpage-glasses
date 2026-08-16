@@ -3,6 +3,7 @@ import { detectFace } from "./face-detection.js";
 import { computeFrameTransform, applyFrameTransform } from "./overlay.js";
 
 const photoInput = document.getElementById("photoInput");
+const photoStage = document.getElementById("photoStage");
 const emptyState = document.getElementById("emptyState");
 const photo = document.getElementById("photo");
 const frameOverlay = document.getElementById("frameOverlay");
@@ -139,6 +140,32 @@ photoInput.addEventListener("change", (event) => {
 });
 
 replaceBtn.addEventListener("click", clearPhoto);
+
+// Drag a photo from Finder (or anywhere) onto the stage — works both for
+// the first upload and to replace an existing photo, since it reuses the
+// same handlePhotoFile the file input uses.
+photoStage.addEventListener("dragenter", (event) => event.preventDefault());
+
+photoStage.addEventListener("dragover", (event) => {
+  event.preventDefault(); // required for "drop" to fire at all
+  photoStage.classList.add("drag-over");
+});
+
+photoStage.addEventListener("dragleave", (event) => {
+  // dragenter/dragleave fire on every child boundary crossed, not just the
+  // stage's own edge — only clear the highlight once the pointer has left
+  // the stage entirely (relatedTarget is where it's going).
+  if (!photoStage.contains(event.relatedTarget)) {
+    photoStage.classList.remove("drag-over");
+  }
+});
+
+photoStage.addEventListener("drop", (event) => {
+  event.preventDefault();
+  photoStage.classList.remove("drag-over");
+  const file = [...(event.dataTransfer?.files ?? [])].find((f) => f.type.startsWith("image/"));
+  if (file) handlePhotoFile(file);
+});
 
 window.addEventListener("resize", () => {
   if (landmarks) renderOverlay();

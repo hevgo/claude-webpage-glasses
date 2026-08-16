@@ -60,7 +60,7 @@ try or order for real.
 
 | # | Requirement |
 |---|---|
-| 1 | User uploads a photo via a file picker (`<input type="file" accept="image/*">`). |
+| 1 | User uploads a photo via a file picker or by dragging a file onto the page (`<input type="file" accept="image/*">`, plus drag-and-drop onto the same stage). |
 | 2 | On upload, the app detects the face and its landmarks entirely client-side. |
 | 3 | A frame style is overlaid on the photo, positioned/scaled/rotated to the detected eye line, updating live as different styles are picked. |
 | 4 | A gallery of frame styles is always visible; selecting one updates the overlay instantly without re-running detection. |

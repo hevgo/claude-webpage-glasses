@@ -200,6 +200,16 @@ body {
   overflow: hidden;
   background: var(--surface-sunken);
   border: 1px solid var(--line);
+  transition: outline-color 0.1s ease;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+/* Shown while dragging a file over the stage — an outline (not just a
+   border/background swap) so it stays visible whether the stage is showing
+   the empty upload card or a photo that fills the whole area. */
+.photo-stage.drag-over {
+  outline-color: var(--accent);
 }
 
 .empty-state {
@@ -377,7 +387,8 @@ body {
 
 @media (prefers-reduced-motion: reduce) {
   .upload-control,
-  .frame-card {
+  .frame-card,
+  .photo-stage {
     transition: none;
   }
 }
