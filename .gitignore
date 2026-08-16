@@ -1,0 +1,5 @@
+# Personal/local test photos — this repo is public; keep real faces out of it.
+*.png
+*.jpg
+*.jpeg
+!assets/**

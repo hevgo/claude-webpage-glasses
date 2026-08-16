@@ -12,12 +12,19 @@ roadmap) and `README.md` for a player-facing overview.
 
 ## Commands
 
-No build, lint, or test tooling — plain static files served as-is:
+No build or lint tooling — plain static files served as-is:
 
 ```sh
 python3 -m http.server 8000
 # then visit http://localhost:8000
 ```
+
+Tests are plain browser-native ES modules too (no Node/npm involved — this
+machine has no JS runtime installed, which is why the suite runs in-browser
+rather than via a Node test runner). With the server above running, visit
+`http://localhost:8000/tests/`. `tests/index.html` reports pass/fail on the
+page and in the console; there's no CLI runner. See `tests/harness.js` for
+the (intentionally tiny, dependency-free) assertion helpers.
 
 Deployment is GitHub Pages, serving the `main` branch root directly
 (`hevgo/claude-webpage-glasses`, public repo) — pushing to `main` is the
@@ -100,6 +107,34 @@ state: bare `:root` (light, default), `@media (prefers-color-scheme: dark) { :ro
 override, if one is ever added). All components consume the tokens
 (`--bg`, `--surface`, `--ink`, `--accent`, etc.) — don't hardcode colors
 elsewhere.
+
+### The `[hidden]` attribute needs the global override in style.css
+
+`style.css` has a top-of-file `[hidden] { display: none !important; }` rule.
+It exists because `.empty-state` and `.photo` each set their own `display`
+(flex/block) to control their visible layout, and an author rule at equal-or
+-higher specificity than the browser's built-in `[hidden] { display: none }`
+silently wins — so `el.hidden = true` stopped actually hiding either element
+(this shipped once as a real bug: the upload prompt stayed on screen after a
+photo loaded, pushing the photo down and throwing off the overlay position,
+computed against the photo's now-wrong on-screen box). If a new element
+needs both a toggled `hidden` state and its own `display` value, rely on
+this global rule rather than re-solving it locally — don't remove it.
+
+### Testing
+
+`tests/overlay.test.js` and `tests/frames.test.js` cover the deterministic,
+pure-function surface (`computeFrameTransform`/`applyFrameTransform` in
+overlay.js, and the `FRAMES` catalog/asset integrity in frames.js) using
+synthetic landmark fixtures (`tests/fixtures.js`) — not real photos or real
+MediaPipe inference. That's a deliberate scope boundary: real face detection
+needs a browser + WASM + the CDN model, which makes it slow, network-
+dependent, and non-deterministic — not a good fit for a fast regression
+suite. Testing real detection end-to-end is a manual/browser-automation task
+(as this project's changes have been verified so far), not something this
+suite attempts. When adding a case, prefer a synthetic fixture that isolates
+one geometry property (aspect ratio, tilt direction, eye spacing) over a
+real image.
 
 ### Privacy constraint
 

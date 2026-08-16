@@ -15,6 +15,14 @@ python3 -m http.server 8000
 
 Or just open `index.html` directly in a browser.
 
+## Run the tests
+
+No test framework or dependencies — plain browser-native ES modules, same
+as the app itself. Serve the folder locally (as above) and visit
+`http://localhost:8000/tests/` (opening `tests/index.html` via `file://`
+won't work — the asset-existence tests use `fetch`, which needs http).
+Results show pass/fail per test on the page and in the console.
+
 ## How it works
 
 - Upload a front-facing photo. Face detection (MediaPipe Face Landmarker)
@@ -42,6 +50,7 @@ js/overlay.js               frame position/scale/rotation math
 js/frames.js                  placeholder frame catalog
 assets/frames/*.svg     placeholder frame graphics (demo set, not real products)
 assets/fonts/*.woff2    self-hosted display/body and label fonts
+tests/                  unit tests for the overlay math and frame catalog (see below)
 PRD.md                  product requirements, including the MVP's future roadmap
 ```
 
