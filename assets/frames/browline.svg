@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160" width="400" height="160">
+  <!-- refEyeSpan: lens centers at x=112 and x=288 (176 apart), bridge anchor at (200,80) -->
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke="#a9812f" stroke-width="5">
+      <line x1="68" y1="84" x2="30" y2="74" />
+      <line x1="332" y1="84" x2="370" y2="74" />
+      <path d="M156,72 Q200,64 244,72" />
+      <rect x="68" y="46" width="88" height="76" rx="12" />
+      <rect x="244" y="46" width="88" height="76" rx="12" />
+    </g>
+    <g stroke="#1c1c1c" stroke-width="16">
+      <path d="M60,58 Q112,38 164,58" />
+      <path d="M340,58 Q288,38 236,58" />
+    </g>
+  </g>
+</svg>

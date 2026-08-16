@@ -3,59 +3,51 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Tic-Tac-Toe — two pens, one page</title>
-  <meta name="description" content="A pass-and-play tic-tac-toe board drawn like pen on notebook paper." />
+  <title>Sightline — try glasses on your own photo</title>
+  <meta name="description" content="Upload a photo and preview eyeglasses frame styles on your own face, entirely in your browser." />
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <main class="page">
     <header class="masthead">
-      <h1 class="title">tic-tac-toe</h1>
-      <p class="subtitle">two players, one page — take turns marking the grid</p>
+      <p class="wordmark">Sightline</p>
+      <h1 class="title">See how frames actually&nbsp;look on you</h1>
+      <p class="subtitle">
+        Upload a front-facing photo and try on a few frame styles. Everything
+        runs in your browser — your photo is never sent anywhere.
+      </p>
     </header>
 
-    <div class="status-row">
-      <div class="status-tag" id="statusTag" role="status" aria-live="polite">
-        <span class="status-dot" id="statusDot" aria-hidden="true"></span>
-        <span id="statusText">player 1's turn</span>
-      </div>
+    <div class="ruler" aria-hidden="true"></div>
+
+    <div class="workspace">
+      <section class="photo-panel" aria-label="Your photo">
+        <div class="photo-stage" id="photoStage">
+          <div class="empty-state" id="emptyState">
+            <input class="visually-hidden" type="file" id="photoInput" accept="image/*" />
+            <label class="upload-control" for="photoInput">
+              <span class="upload-label">Upload a photo</span>
+              <span class="upload-hint">Front-facing, both eyes visible, good light works best.</span>
+            </label>
+          </div>
+          <img class="photo" id="photo" alt="" hidden />
+          <img class="frame-overlay" id="frameOverlay" alt="" hidden />
+        </div>
+
+        <div class="status-row">
+          <p class="status" id="status" role="status" aria-live="polite"></p>
+          <button class="text-btn" id="replaceBtn" type="button" hidden>Replace photo</button>
+        </div>
+      </section>
+
+      <section class="frame-panel" aria-label="Frame styles">
+        <h2 class="panel-heading">Frame styles</h2>
+        <div class="frame-grid" id="frameGrid" role="group" aria-label="Choose a frame style"></div>
+        <p class="footnote">Demo frames shown here are placeholder designs, not real products.</p>
+      </section>
     </div>
-
-    <div class="board-wrap">
-      <svg id="boardSvg" class="board" viewBox="0 0 300 300" role="presentation" aria-hidden="true">
-        <g id="gridLines" class="grid-lines"></g>
-        <g id="marks"></g>
-        <g id="strike"></g>
-      </svg>
-      <div class="cell-grid" id="cellGrid" role="grid" aria-label="Tic-tac-toe board"></div>
-    </div>
-
-    <section class="scoreboard" aria-label="Score">
-      <div class="score-box">
-        <span class="score-label ink-navy">X</span>
-        <svg class="tally" id="tallyX" viewBox="0 0 120 30" aria-hidden="true"></svg>
-        <span class="score-num" id="scoreNumX">0</span>
-      </div>
-      <div class="score-box">
-        <span class="score-label ink-red">O</span>
-        <svg class="tally" id="tallyO" viewBox="0 0 120 30" aria-hidden="true"></svg>
-        <span class="score-num" id="scoreNumO">0</span>
-      </div>
-      <div class="score-box">
-        <span class="score-label ink-faded">ties</span>
-        <svg class="tally" id="tallyD" viewBox="0 0 120 30" aria-hidden="true"></svg>
-        <span class="score-num" id="scoreNumD">0</span>
-      </div>
-    </section>
-
-    <div class="controls">
-      <button class="stamp-btn" id="newGameBtn" type="button">new game</button>
-      <button class="text-link" id="resetScoreBtn" type="button">reset scores</button>
-    </div>
-
-    <p class="footnote">tab to a square, enter or space to mark it.</p>
   </main>
 
-  <script src="script.js"></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>

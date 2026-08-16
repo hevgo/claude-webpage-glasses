@@ -1,93 +1,73 @@
 /* ---------------------------------------------------------------
-   Fonts — Kalam (ballpoint headline) + IBM Plex Mono (typewritten UI)
+   Fonts — Archivo (variable, display + body) + IBM Plex Mono (labels)
    --------------------------------------------------------------- */
 @font-face {
-  font-family: "Kalam";
+  font-family: "Archivo";
   font-style: normal;
-  font-weight: 400;
+  font-weight: 100 900;
   font-display: swap;
-  src: url("fonts/kalam-400.woff2") format("woff2");
-}
-@font-face {
-  font-family: "Kalam";
-  font-style: normal;
-  font-weight: 700;
-  font-display: swap;
-  src: url("fonts/kalam-700.woff2") format("woff2");
+  src: url("assets/fonts/archivo-var.woff2") format("woff2-variations");
 }
 @font-face {
   font-family: "IBM Plex Mono";
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src: url("fonts/plexmono-400.woff2") format("woff2");
+  src: url("assets/fonts/plexmono-400.woff2") format("woff2");
 }
 @font-face {
   font-family: "IBM Plex Mono";
   font-style: normal;
   font-weight: 500;
   font-display: swap;
-  src: url("fonts/plexmono-500.woff2") format("woff2");
-}
-@font-face {
-  font-family: "IBM Plex Mono";
-  font-style: normal;
-  font-weight: 600;
-  font-display: swap;
-  src: url("fonts/plexmono-600.woff2") format("woff2");
+  src: url("assets/fonts/plexmono-500.woff2") format("woff2");
 }
 
 /* ---------------------------------------------------------------
-   Tokens — a sheet of ruled paper, two pens
+   Tokens
    --------------------------------------------------------------- */
 :root {
-  --paper: #f4f1e6;
-  --paper-line: #aebfe0;
-  --paper-margin: #d98d84;
-  --ink-navy: #223055;
-  --ink-navy-soft: #223055cc;
-  --ink-red: #b23a2e;
-  --ink-red-soft: #b23a2ecc;
-  --ink-faded: #5c6178;
-  --ink-faded-2: #8a8f9e;
-  --surface-raised: #ece8da;
-  --shadow-soft: 0 1px 0 rgba(34, 48, 85, 0.08);
-  --focus-ring: #b23a2e;
+  --bg: #f1f0ec;
+  --surface: #ffffff;
+  --surface-sunken: #e8e6de;
+  --ink: #1f2422;
+  --ink-soft: #5b625c;
+  --line: #d7d5cd;
+  --accent: #2f7c74;
+  --accent-contrast: #ffffff;
+  --danger: #b23a2e;
+  --focus-ring: #2f7c74;
 
-  --font-display: "Kalam", "Segoe Print", cursive;
+  --font-display: "Archivo", ui-sans-serif, system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #1d2233;
-    --paper-line: #4a5a89;
-    --paper-margin: #c96a5e;
-    --ink-navy: #eef0f8;
-    --ink-navy-soft: #eef0f8cc;
-    --ink-red: #e8897c;
-    --ink-red-soft: #e8897ccc;
-    --ink-faded: #a7acc4;
-    --ink-faded-2: #7d83a0;
-    --surface-raised: #262c42;
-    --shadow-soft: 0 1px 0 rgba(0, 0, 0, 0.35);
-    --focus-ring: #e8897c;
+    --bg: #14181a;
+    --surface: #1c2224;
+    --surface-sunken: #171c1d;
+    --ink: #eef1ef;
+    --ink-soft: #a7b0ac;
+    --line: #2c3335;
+    --accent: #4fb3a8;
+    --accent-contrast: #0d1413;
+    --danger: #e2887c;
+    --focus-ring: #4fb3a8;
   }
 }
 
 :root[data-theme="dark"] {
-  --paper: #1d2233;
-  --paper-line: #4a5a89;
-  --paper-margin: #c96a5e;
-  --ink-navy: #eef0f8;
-  --ink-navy-soft: #eef0f8cc;
-  --ink-red: #e8897c;
-  --ink-red-soft: #e8897ccc;
-  --ink-faded: #a7acc4;
-  --ink-faded-2: #7d83a0;
-  --surface-raised: #262c42;
-  --shadow-soft: 0 1px 0 rgba(0, 0, 0, 0.35);
-  --focus-ring: #e8897c;
+  --bg: #14181a;
+  --surface: #1c2224;
+  --surface-sunken: #171c1d;
+  --ink: #eef1ef;
+  --ink-soft: #a7b0ac;
+  --line: #2c3335;
+  --accent: #4fb3a8;
+  --accent-contrast: #0d1413;
+  --danger: #e2887c;
+  --focus-ring: #4fb3a8;
 }
 
 /* ---------------------------------------------------------------
@@ -104,308 +84,196 @@ body {
 
 body {
   margin: 0;
-  background: var(--paper);
-  background-image:
-    repeating-linear-gradient(
-      to bottom,
-      transparent 0,
-      transparent 35px,
-      var(--paper-line) 35px,
-      var(--paper-line) 36px
-    );
-  background-position: 0 92px;
-  color: var(--ink-navy);
-  font-family: var(--font-mono);
-  min-height: 100%;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-weight: 400;
   display: flex;
   justify-content: center;
-  padding: 0 24px;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  left: max(24px, calc(50% - 340px));
-  width: 1px;
-  background: var(--paper-margin);
-  opacity: 0.55;
-  pointer-events: none;
+  padding: 0 20px;
 }
 
 .page {
   width: 100%;
-  max-width: 460px;
-  padding: 56px 0 64px 40px;
+  max-width: 880px;
+  padding: 56px 0 64px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   gap: 28px;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
 }
 
 /* ---------------------------------------------------------------
    Masthead
    --------------------------------------------------------------- */
 .masthead {
-  text-align: center;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 10px;
+  max-width: 640px;
+}
+
+.wordmark {
+  margin: 0;
+  font-family: var(--font-mono);
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
 }
 
 .title {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: clamp(2.4rem, 9vw, 3.1rem);
-  line-height: 1;
   margin: 0;
-  color: var(--ink-navy);
-  transform: rotate(-1.4deg);
+  font-weight: 800;
+  font-size: clamp(2rem, 5vw, 2.75rem);
+  line-height: 1.08;
+  letter-spacing: -0.01em;
   text-wrap: balance;
 }
 
 .subtitle {
   margin: 0;
-  font-size: 0.72rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  color: var(--ink-faded);
+  font-size: 1rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  max-width: 52ch;
+}
+
+/* ruler-tick divider — pure CSS, tokenized (no baked-in colors) */
+.ruler {
+  height: 10px;
+  background: repeating-linear-gradient(
+    to right,
+    var(--line) 0,
+    var(--line) 1px,
+    transparent 1px,
+    transparent 10px
+  );
+  opacity: 0.9;
 }
 
 /* ---------------------------------------------------------------
-   Status tag — a margin note
+   Workspace layout
    --------------------------------------------------------------- */
-.status-row {
-  display: flex;
-  justify-content: center;
-}
-
-.status-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 14px;
-  border: 1.5px solid var(--ink-faded-2);
-  border-radius: 3px;
-  transform: rotate(-0.6deg);
-  font-size: 0.72rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--ink-navy);
-  background: var(--surface-raised);
-  box-shadow: var(--shadow-soft);
-  transition: border-color 0.2s ease;
-}
-
-.status-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: currentColor;
-  color: var(--ink-navy);
-  transition: color 0.2s ease;
-}
-
-.status-tag[data-player="O"] .status-dot,
-.status-tag[data-player="O"] {
-  color: var(--ink-red);
-}
-
-.status-tag[data-state="win"] {
-  border-color: var(--ink-red);
-}
-
-.status-tag[data-state="draw"] {
-  color: var(--ink-faded);
-}
-
-/* ---------------------------------------------------------------
-   Board
-   --------------------------------------------------------------- */
-.board-wrap {
-  position: relative;
-  width: min(100%, 340px);
-  aspect-ratio: 1 / 1;
-}
-
-.board {
-  width: 100%;
-  height: 100%;
-  display: block;
-  overflow: visible;
-}
-
-.grid-lines path {
-  fill: none;
-  stroke: var(--ink-navy);
-  stroke-width: 2.5;
-  stroke-linecap: round;
-  opacity: 0.55;
-}
-
-.mark-x path {
-  fill: none;
-  stroke: var(--ink-navy);
-  stroke-width: 7;
-  stroke-linecap: round;
-}
-
-.mark-o path {
-  fill: none;
-  stroke: var(--ink-red);
-  stroke-width: 7;
-  stroke-linecap: round;
-}
-
-.strike-line path {
-  fill: none;
-  stroke: var(--ink-red);
-  stroke-width: 4;
-  stroke-linecap: round;
-  opacity: 0.85;
-}
-
-.cell-grid {
-  position: absolute;
-  inset: 0;
+.workspace {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 1.15fr 1fr;
+  gap: 28px;
+  align-items: start;
 }
 
-.cell {
-  appearance: none;
-  border: none;
-  background: transparent;
-  padding: 0;
-  margin: 0;
-  cursor: pointer;
-  border-radius: 6px;
-}
-
-.cell:hover:not(:disabled) {
-  background: color-mix(in srgb, var(--ink-navy) 6%, transparent);
-}
-
-.cell:disabled {
-  cursor: default;
-}
-
-.cell:focus-visible {
-  outline: 2px dashed var(--focus-ring);
-  outline-offset: -4px;
+@media (max-width: 720px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
 }
 
 /* ---------------------------------------------------------------
-   Scoreboard — tally marks, the way you'd actually keep score
+   Photo panel
    --------------------------------------------------------------- */
-.scoreboard {
+.photo-panel {
   display: flex;
-  gap: 28px;
-  justify-content: center;
-  flex-wrap: wrap;
+  flex-direction: column;
+  gap: 12px;
 }
 
-.score-box {
+.photo-stage {
+  position: relative;
+  border-radius: 12px;
+  overflow: hidden;
+  background: var(--surface-sunken);
+  border: 1px solid var(--line);
+}
+
+.empty-state {
+  min-height: 340px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+.upload-control {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 2px;
-  min-width: 64px;
-}
-
-.score-label {
-  font-family: var(--font-display);
-  font-weight: 700;
-  font-size: 1.05rem;
-}
-
-.ink-navy {
-  color: var(--ink-navy);
-}
-.ink-red {
-  color: var(--ink-red);
-}
-.ink-faded {
-  color: var(--ink-faded);
-}
-
-.tally {
-  width: 60px;
-  height: 15px;
-}
-
-.tally path {
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 2.2;
-  stroke-linecap: round;
-}
-
-.score-box:nth-child(1) .tally {
-  color: var(--ink-navy);
-}
-.score-box:nth-child(2) .tally {
-  color: var(--ink-red);
-}
-.score-box:nth-child(3) .tally {
-  color: var(--ink-faded);
-}
-
-.score-num {
-  font-size: 0.68rem;
-  color: var(--ink-faded-2);
-  font-variant-numeric: tabular-nums;
-}
-
-/* ---------------------------------------------------------------
-   Controls
-   --------------------------------------------------------------- */
-.controls {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.stamp-btn {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  font-size: 0.78rem;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  color: var(--ink-red);
-  background: transparent;
-  border: 2px solid var(--ink-red);
-  border-radius: 4px;
-  padding: 10px 22px;
+  gap: 6px;
+  text-align: center;
+  padding: 28px 24px;
+  border: 1.5px dashed var(--line);
+  border-radius: 10px;
   cursor: pointer;
-  transform: rotate(-1.2deg);
-  box-shadow: 2px 2px 0 color-mix(in srgb, var(--ink-red) 30%, transparent);
-  transition: transform 0.15s ease, box-shadow 0.15s ease, background 0.15s ease, color 0.15s ease;
+  transition: border-color 0.15s ease, background 0.15s ease;
 }
 
-.stamp-btn:hover {
-  transform: rotate(-1.2deg) translate(-1px, -1px);
-  box-shadow: 3px 3px 0 color-mix(in srgb, var(--ink-red) 30%, transparent);
+.upload-control:hover {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 6%, transparent);
 }
 
-.stamp-btn:active {
-  transform: rotate(-1.2deg) translate(1px, 1px);
-  box-shadow: 1px 1px 0 color-mix(in srgb, var(--ink-red) 30%, transparent);
-}
-
-.stamp-btn:focus-visible {
+#photoInput:focus-visible + .upload-control {
   outline: 2px dashed var(--focus-ring);
   outline-offset: 3px;
 }
 
-.text-link {
+.upload-label {
+  font-weight: 600;
+  font-size: 1.02rem;
+}
+
+.upload-hint {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  max-width: 30ch;
+}
+
+.photo {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.frame-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.status-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 24px;
+}
+
+.status {
+  margin: 0;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+}
+
+.status[data-tone="error"] {
+  color: var(--danger);
+}
+
+.text-btn {
   font-family: var(--font-mono);
-  font-size: 0.68rem;
-  letter-spacing: 0.06em;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
-  color: var(--ink-faded);
+  color: var(--ink-soft);
   background: none;
   border: none;
   cursor: pointer;
@@ -413,38 +281,95 @@ body::before {
   text-decoration-style: dotted;
   text-underline-offset: 3px;
   padding: 4px;
+  flex-shrink: 0;
 }
 
-.text-link:hover {
-  color: var(--ink-navy);
+.text-btn:hover {
+  color: var(--ink);
 }
 
-.text-link:focus-visible {
+.text-btn:focus-visible {
   outline: 2px dashed var(--focus-ring);
   outline-offset: 2px;
 }
 
+/* ---------------------------------------------------------------
+   Frame panel
+   --------------------------------------------------------------- */
+.frame-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.panel-heading {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+
+.frame-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+.frame-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 14px 10px;
+  background: var(--surface);
+  border: 1.5px solid var(--line);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: border-color 0.15s ease, background 0.15s ease;
+}
+
+.frame-card:hover {
+  border-color: var(--accent);
+}
+
+.frame-card[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: color-mix(in srgb, var(--accent) 8%, var(--surface));
+}
+
+.frame-card:focus-visible {
+  outline: 2px dashed var(--focus-ring);
+  outline-offset: 2px;
+}
+
+.frame-card img {
+  width: 100%;
+  height: auto;
+  color: var(--ink-soft);
+}
+
+.frame-card span {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+}
+
+.frame-card[aria-pressed="true"] span {
+  color: var(--ink);
+  font-weight: 600;
+}
+
 .footnote {
   margin: 0;
-  font-size: 0.65rem;
-  letter-spacing: 0.03em;
-  color: var(--ink-faded-2);
-  text-align: center;
+  font-size: 0.72rem;
+  color: var(--ink-soft);
+  opacity: 0.8;
 }
 
-/* ---------------------------------------------------------------
-   Motion
-   --------------------------------------------------------------- */
 @media (prefers-reduced-motion: reduce) {
-  .stamp-btn,
-  .stamp-btn:hover,
-  .stamp-btn:active {
+  .upload-control,
+  .frame-card {
     transition: none;
-  }
-}
-
-@media (max-width: 380px) {
-  .page {
-    padding-left: 28px;
   }
 }

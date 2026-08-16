@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 160" width="400" height="160">
+  <!-- refEyeSpan: lens centers at x=110 and x=290 (180 apart), bridge anchor at (200,80) -->
+  <g fill="none" stroke="#b8862c" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M57,90 L20,78" stroke-width="6" />
+    <path d="M343,90 L380,78" stroke-width="6" />
+    <path d="M55,52 Q110,32 165,50 Q200,58 235,50 Q290,32 345,52" stroke-width="10" />
+    <path d="M110,45 C145,45 165,65 163,92 C161,118 135,133 110,131 C85,133 59,118 57,92 C55,65 75,45 110,45 Z" stroke-width="6" />
+    <path d="M290,45 C255,45 235,65 237,92 C239,118 265,133 290,131 C315,133 341,118 343,92 C345,65 325,45 290,45 Z" stroke-width="6" />
+  </g>
+</svg>
