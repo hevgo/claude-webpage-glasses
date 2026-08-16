@@ -77,6 +77,14 @@
   box-sizing: border-box;
 }
 
+/* Several elements below set their own `display` (flex/block) to control
+   their visible layout, which otherwise wins over the browser's default
+   `[hidden] { display: none }` rule by specificity — without this, toggling
+   `.hidden` in JS stops actually hiding anything. */
+[hidden] {
+  display: none !important;
+}
+
 html,
 body {
   height: 100%;
