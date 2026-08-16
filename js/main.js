@@ -14,6 +14,12 @@ let selectedFrameId = FRAMES[0].id;
 let landmarks = null;
 let currentObjectUrl = null;
 
+// Bumped on every new upload and on clearPhoto(). handlePhotoFile checks
+// this after each await and bails if it's been superseded — otherwise a
+// slower call (or one the user already cleared) could land its result after
+// a newer one, per the race documented at each check below.
+let uploadToken = 0;
+
 function setStatus(text, tone) {
   status.textContent = text;
   if (tone) status.dataset.tone = tone;
@@ -40,6 +46,8 @@ function renderOverlay() {
 }
 
 async function handlePhotoFile(file) {
+  const token = ++uploadToken;
+
   if (currentObjectUrl) URL.revokeObjectURL(currentObjectUrl);
   currentObjectUrl = URL.createObjectURL(file);
 
@@ -51,12 +59,23 @@ async function handlePhotoFile(file) {
   photo.src = currentObjectUrl;
   setStatus("Analyzing photo…");
 
-  await new Promise((resolve) => {
-    photo.onload = resolve;
+  const loaded = await new Promise((resolve) => {
+    photo.onload = () => resolve(true);
+    photo.onerror = () => resolve(false);
   });
+
+  // Superseded by a newer upload, or the photo was cleared while this one
+  // was still loading/analyzing — don't let a stale result touch the UI.
+  if (token !== uploadToken) return;
+
+  if (!loaded) {
+    setStatus("Couldn't load that image — try a different photo.", "error");
+    return;
+  }
 
   try {
     const result = await detectFace(photo);
+    if (token !== uploadToken) return;
     if (!result) {
       setStatus("No face detected — try a clearer, front-facing photo.", "error");
       return;
@@ -65,11 +84,14 @@ async function handlePhotoFile(file) {
     setStatus("");
     renderOverlay();
   } catch {
+    if (token !== uploadToken) return;
     setStatus("Something went wrong analyzing that photo — try a different one.", "error");
   }
 }
 
 function clearPhoto() {
+  uploadToken++; // invalidate any handlePhotoFile call still in flight
+
   if (currentObjectUrl) URL.revokeObjectURL(currentObjectUrl);
   currentObjectUrl = null;
   landmarks = null;

@@ -12,8 +12,7 @@ const MODEL_URL =
 
 let landmarkerPromise = null;
 
-async function createLandmarker(delegate) {
-  const vision = await FilesetResolver.forVisionTasks(WASM_BASE_URL);
+function createLandmarker(vision, delegate) {
   return FaceLandmarker.createFromOptions(vision, {
     baseOptions: { modelAssetPath: MODEL_URL, delegate },
     runningMode: "IMAGE",
@@ -23,7 +22,23 @@ async function createLandmarker(delegate) {
 
 function getLandmarker() {
   if (!landmarkerPromise) {
-    landmarkerPromise = createLandmarker("GPU").catch(() => createLandmarker("CPU"));
+    landmarkerPromise = (async () => {
+      // Resolve the WASM fileset once and reuse it for both delegate
+      // attempts — re-resolving on fallback would re-fetch/re-init the
+      // whole runtime right when the slower CPU path is already underway.
+      const vision = await FilesetResolver.forVisionTasks(WASM_BASE_URL);
+      try {
+        return await createLandmarker(vision, "GPU");
+      } catch {
+        return await createLandmarker(vision, "CPU");
+      }
+    })().catch((err) => {
+      // Don't let a transient failure (e.g. a network blip fetching the
+      // model) permanently poison detection for the rest of the session —
+      // clear the cache so the next call retries from scratch.
+      landmarkerPromise = null;
+      throw err;
+    });
   }
   return landmarkerPromise;
 }
